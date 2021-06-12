@@ -1,0 +1,64 @@
+1) First install the development environment with the command:
+python -m virtualenv devenv
+
+2) Activate the development environment with:
+.\devenv\Scripts\activate
+or this if you're running in mac
+src .\devenv\Scripts\activate
+
+3) Install the dependencies with the command: (I had to change some python-jose-cryptodome way of install due to errors)
+pip install -r requirements.txt
+
+4) Setup the Auth0 account.
+
+To login:
+
+https://dev-cafeshop.eu.auth0.com/authorize?audience=cafe&response_type=token&client_id=QoI3l3Puynv0UbkhhFyQQZPp7n447CXl&redirect_uri=http://127.0.0.1:4200/tabs/user-page
+
+
+al3d3sign (Manager) Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJYbGRsUEg5dk1sZ1BsOGhCZWxObCJ9.eyJpc3MiOiJodHRwczovL2Rldi1jYWZlc2hvcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMDczNDA4NDIxMzMxNDA4MDc2NjAiLCJhdWQiOiJjYWZlIiwiaWF0IjoxNjIzNTEzMzUxLCJleHAiOjE2MjM1MjA1NTEsImF6cCI6IlFvSTNsM1B1eW52MFVia2hoRnlRUVpQcDduNDQ3Q1hsIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6ZHJpbmtzIiwiZ2V0OmRyaW5rcy1kZXRhaWwiLCJwYXRjaDpkcmlua3MiLCJwb3N0OmRyaW5rcyJdfQ.fufi1t6yZ5rtAv8WKA_3yA3cGfYP6TQ0C0wir5cO72Y0aDgUQozh309gOQrTBFWePgiDKe61QjvkBFtSGdMkaSGpJT8Q68k2mBi6DOesJgIqRHA-2zJVSlZOlEwKxntA6mmmqDiLQYx5TwwySuB3re4C-PmUxOEGq1Vh6zhQtdEeMz1uST_xY5MDE4fqkeS3LBemAkg6ZH1w9BaLGj3tTtGWWo9YhBaq4YsqEkHlavmH6wDV6CdRJlsrS-5U8poyk7D5PXKCfEFM4tIw1XqrVBnulibrEx8ygvIshcobAYMumohp24m9yqceMXxXzXuftssQd0rdEPgGyNH0c29yKQ
+
+magcamaleon (Barista) Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJYbGRsUEg5dk1sZ1BsOGhCZWxObCJ9.eyJpc3MiOiJodHRwczovL2Rldi1jYWZlc2hvcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTY2NTM4OTY0MzUyMzEwMDQ4NjUiLCJhdWQiOiJjYWZlIiwiaWF0IjoxNjIzNTExOTc2LCJleHAiOjE2MjM1MTkxNzYsImF6cCI6IlFvSTNsM1B1eW52MFVia2hoRnlRUVpQcDduNDQ3Q1hsIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmtzLWRldGFpbCJdfQ.BTrK9hX8CsSVuHXZT0W-V_etEnxZuiKAYEvY_6DpgZMwaU2tv3r_K0QQj3Nj9JP4VusJy1xoGAiN60OPirmYYWoFYXZxl45UFGRdGajCO7Os0MZt0owBkMGNDbis2gFut0zzCTmA7a4K39H7llPvsvP0Qk2Iv36zrQ0c2RPumPHI5L9hdgKly8kZJNzR8Q-_FeeFJZZBRNr2HxPFoY5UHw9Qmfwb1Nm_eNhPBYPChHXlcaY6pudB2fu6OLUy8nTGRpqTldYNwAesQR2smoaMvlIpk0j26aUSoK5vDDLgqfGBgd_yoCsgAmYO_3eyzT4vvdYqx5qAtNydvDPT8aRCeQ
+
+
+Comments:
+I have had a hard time installing the dependencies for this project. I wish that Udacity update those repos to save us time. I cannot see the hard mission of updating those repos, which will save time for mentors and students. I have summarized the steps for installing dependencies for my fellow students.
+
+For the backend, after setting the environment install python-jose using the following command:
+
+pip install python-jose[cryptography]
+
+(reference: https://pypi.org/project/python-jose/)
+
+Then update the requirements file as follows:
+astroid==2.2.5
+Click==7.0
+ecdsa==0.13.2
+Flask==1.0.2
+Flask-SQLAlchemy==2.4.0
+future==0.17.1
+isort==4.3.18
+itsdangerous==1.1.0
+Jinja2==2.10.1
+lazy-object-proxy==1.4.0
+MarkupSafe==1.1.1
+mccabe==0.6.1
+pylint==2.3.1
+six==1.12.0
+SQLAlchemy==1.3.3
+typed-ast==1.4.1
+Werkzeug==1.0.1
+wrapt==1.11.1
+Flask-Cors==3.0.8
+
+After installing the requirements, go to src folder and run the flask app. You many encounter "module time has no attribute clock" error, replace time.clock to time.perf_counter in all occurrences (reference: https://knowledge.udacity.com/questions/75767).
+
+With the frontend side, you may encounter an error with " node-sass". Use the following commands to solve it:
+npm uninstall node-sass
+npm install node-sass@4.14.1
+
+(reference: https://stackoverflow.com/questions/64625050/error-node-sass-version-5-0-0-is-incompatible-with-4-0-0)
+
+I hope this helps and please add to it any missing parts.
+
+P.S. This worked with me on Windows and Python 3.9. If this does not work with you, I suggest you downgrade to Python 3.7.
